@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+import requests
+
+def downloads_pic(**kwargs):
+    pic_name = kwargs.get('pic_name', None)
+
+    url = 'http://xxxx/rand_code_captcha/'
+    res = requests.get(url, stream=True)
+    with open(pic_path + pic_name+'.bmp', 'wb') as f:
+        for chunk in res.iter_content(chunk_size=1024):
+            if chunk:  # filter out keep-alive new chunks
+                f.write(chunk)
+                f.flush()
+        f.close()
