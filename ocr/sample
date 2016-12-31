@@ -2,10 +2,10 @@
 
 import requests
 
-def downloads_pic(**kwargs):
-    pic_name = kwargs.get('pic_name', None)
-
-    url = 'http://xxxx/rand_code_captcha/'
+def downloads_pic(kwargs):
+    pic_name = kwargs.get('pic_name',None)
+    pic_path = kwargs.get('pic_path',None)
+    url = 'http://houtai.51fight.cn/member/memberUser/generateCode.json'
     res = requests.get(url, stream=True)
     with open(pic_path + pic_name+'.bmp', 'wb') as f:
         for chunk in res.iter_content(chunk_size=1024):
@@ -13,3 +13,11 @@ def downloads_pic(**kwargs):
                 f.write(chunk)
                 f.flush()
         f.close()
+
+def main():
+    filename = {'pic_name':'file','pic_path':'../picture/'}
+    print(type(filename))
+    downloads_pic(filename)
+
+if __name__ == '__main__':
+    main()
