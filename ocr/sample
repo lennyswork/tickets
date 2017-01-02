@@ -7,7 +7,7 @@ def downloads_pic(kwargs):
     pic_path = kwargs.get('pic_path',None)
     url = 'http://houtai.51fight.cn/member/memberUser/generateCode.json'
     res = requests.get(url, stream=True)
-    with open(pic_path + pic_name+'.bmp', 'wb') as f:
+    with open(pic_path + pic_name+'.jpg', 'wb') as f:
         for chunk in res.iter_content(chunk_size=1024):
             if chunk:  # filter out keep-alive new chunks
                 f.write(chunk)
